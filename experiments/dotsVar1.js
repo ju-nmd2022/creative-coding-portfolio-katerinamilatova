@@ -1,13 +1,13 @@
 function setup() {
-  createCanvas(600, 900);
+  createCanvas(600, 600);
   background(0, 0, 0);
 }
 
 let shift = 2;
 let cirleSize = 30;
 let numCols = 7;
-let numRows = 14;
-let gap = 25;
+let numRows = 7;
+let gap = 40;
 let allColors = [
   //colours picked by ChatGPT
   [255, 0, 255], // Magenta
@@ -61,10 +61,9 @@ function drawCircles(x, y, d, numberOfLines) {
 }
 
 function draw() {
-  //combination of chatGPT (helped put together, made it work), what we did in class and my input
-  let startX = (width - (cirleSize + gap) * numCols + gap) / 2;
-  let startY = (height - (cirleSize + gap) * numRows + gap) / 2;
-
+  let startX = 90;
+  let startY = 90;
+  frameRate(8);
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
       //has to be here to be called everytime for a new ellipse!
