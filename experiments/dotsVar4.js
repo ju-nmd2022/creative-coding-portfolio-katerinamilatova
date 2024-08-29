@@ -1,7 +1,6 @@
 function setup() {
   createCanvas(450, 900);
   background(0, 0, 0);
-  // frameRate(2);
 }
 let shift = 2;
 let cirleSize = 27;
@@ -83,15 +82,9 @@ function draw() {
       let y = startY + row * (cirleSize + gap) + randomPushY;
       const value = noise(x / divider, y / divider) * cirleSize;
 
-      // Draw each circle with its unique settings
       // let xx = x + sin(frameCount);
       drawCircles(x, y, cirleSize, 12);
     }
   }
   noLoop();
-
-  // x++;
-  // y++;
-  // x = x + random(-3, 3);
-  // y = y + random(-3, 3);
 }
