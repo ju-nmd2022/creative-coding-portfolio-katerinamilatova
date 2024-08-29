@@ -1,6 +1,9 @@
 function setup() {
   createCanvas(450, 900);
   background(0, 0, 0);
+
+  randomBiggerCoeficient = random(20, 50);
+  randomSmallerCoeficient = random(-5, 5);
 }
 let shift = 2;
 let cirleSize = 27;
@@ -43,8 +46,8 @@ function pickColor() {
   currentSecondColor = allColors[randomIndex2];
 }
 
-let randomBiggerCoeficient = random(20, 50);
-let randomSmallerCoeficient = random(-5, 5);
+let randomBiggerCoeficient;
+let randomSmallerCoeficient;
 
 function drawCircles(x, y, d, numberOfLines) {
   noFill();
