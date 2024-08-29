@@ -1,9 +1,8 @@
 function setup() {
-  createCanvas(600, 900);
+  createCanvas(450, 900);
   background(0, 0, 0);
-  frameRate(4);
+  // frameRate(2);
 }
-
 let shift = 2;
 let cirleSize = 27;
 let numCols = 7;
@@ -32,10 +31,12 @@ let allColors = [
   [221, 160, 221], // Plum
   [238, 130, 238], // Violet
 ];
+const divider = 20;
 
 const colorsLenght = allColors.length;
 let currentColor;
 let currentSecondColor;
+let currentThirdColor;
 function pickColor() {
   //chat GPT helped with these 2 lines
   const randomIndex = Math.floor(Math.random() * allColors.length);
@@ -44,6 +45,9 @@ function pickColor() {
   currentSecondColor = allColors[randomIndex2];
 }
 
+let randomBiggerCoeficient = random(20, 50);
+let randomSmallerCoeficient = random(-5, 5);
+
 function drawCircles(x, y, d, numberOfLines) {
   noFill();
   stroke(currentColor);
@@ -51,17 +55,21 @@ function drawCircles(x, y, d, numberOfLines) {
   //following logic is based on coding lessons
   ellipseMode(CENTER);
   for (let i = 0; i < numberOfLines; i++) {
-    //Could Garrit explain this line?
-    const sizeOfCurrentEllipse = (d / numberOfLines) * i;
+    //Could Garrit explain this line? // počet okvětních lístků
+    const sizeOfCurrentEllipse =
+      (d / numberOfLines) * i + randomBiggerCoeficient;
     ellipse(x, y, sizeOfCurrentEllipse);
   }
+  stroke(currentSecondColor);
+  for (let i = 0; i < numberOfLines; i++) {
+    const sizeOfCurrentEllipse = (d / numberOfLines) * i;
+    ellipse(x - shift, y - shift, sizeOfCurrentEllipse);
+  }
 }
-
 function draw() {
   //combination of chatGPT (helped put together, made it work), what we did in class and my input
   let startX = (width - (cirleSize + gap) * numCols + gap) / 2;
   let startY = (height - (cirleSize + gap) * numRows + gap) / 2;
-  rotateY(frameCount * 0.01);
 
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
@@ -73,9 +81,17 @@ function draw() {
 
       let x = startX + col * (cirleSize + gap) + randomPushX;
       let y = startY + row * (cirleSize + gap) + randomPushY;
+      const value = noise(x / divider, y / divider) * cirleSize;
 
+      // Draw each circle with its unique settings
+      // let xx = x + sin(frameCount);
       drawCircles(x, y, cirleSize, 12);
     }
   }
   noLoop();
+
+  // x++;
+  // y++;
+  // x = x + random(-3, 3);
+  // y = y + random(-3, 3);
 }

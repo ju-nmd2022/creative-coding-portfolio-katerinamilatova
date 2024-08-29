@@ -67,7 +67,7 @@ function draw() {
   //combination of chatGPT (helped put together, made it work), what we did in class and my input
   let startX = random(0, 0);
   let startY = random(0, 0);
-  frameRate(10);
+  frameRate(5);
 
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
@@ -81,7 +81,6 @@ function draw() {
       let x = startX + col * (cirleSize + gap) + randomPushX;
       let y = startY + row * (cirleSize + gap) + randomPushY;
 
-      // Draw each circle with its unique settings
       drawCircles(x, y, cirleSize, 12, 70);
     }
   }
