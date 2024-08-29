@@ -10,6 +10,11 @@
     "description": "Neon Craziness was created based on Colourful Dots. By allowing looping and experimenting with bold colours, a new artwork has been created, not at all giving the same feel as default version. "
   },
   {
+    "file": "experiments/generatedLines.js",
+    "name": "Shades Of Purple",
+    "description": "This animation was created based on Lines."
+  },
+  {
     "file": "experiments/lines.js",
     "name": "Lines",
     "description": "Lines are based on Regrowth (2021) by Tyler Hobbs."
