@@ -72,6 +72,7 @@ function draw() {
 
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
+      noLoop();
       //has to be here to be called everytime for a new ellipse!
       pickColor();
 
@@ -86,5 +87,4 @@ function draw() {
       drawCircles(x, y, cirleSize, 12);
     }
   }
-  noLoop();
 }
