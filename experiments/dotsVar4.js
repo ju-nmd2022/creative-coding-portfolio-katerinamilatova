@@ -1,31 +1,36 @@
 function setup() {
   createCanvas(600, 900);
   background(0, 0, 0);
+  frameRate(4);
 }
 
-let shift = 10;
-let cirleSize = random(1, 3);
-let circleTwoSize = random(4, 7);
+let shift = 2;
+let cirleSize = 27;
 let numCols = 7;
-let numRows = 10;
+let numRows = 14;
 let gap = 25;
 let allColors = [
   //colours picked by ChatGPT
-  [70, 130, 180], // Steel Blue
-  [100, 149, 237], // Cornflower Blue
-  [72, 61, 139], // Dark Slate Blue
-  [176, 196, 222], // Light Steel Blue
-  [95, 158, 160], // Cadet Blue
-  [119, 136, 153], // Light Slate Gray
+  [255, 99, 71], // Tomato Red
+  [255, 140, 0], // Dark Orange
+  [255, 165, 0], // Orange
+  [255, 228, 181], // Light Moccasin
+  [255, 218, 185], // Peach Puff
+  [255, 182, 193], // Light Pink
+  [255, 105, 180], // Hot Pink
+  [255, 20, 147], // Deep Pink
+  [240, 128, 128], // Light Coral
+  [250, 128, 114], // Salmon
+  [173, 255, 47], // Green Yellow
+  [144, 238, 144], // Light Green
+  [60, 179, 113], // Medium Sea Green
+  [102, 205, 170], // Medium Aquamarine
   [135, 206, 250], // Light Sky Blue
-  [25, 25, 112], // Midnight Blue
-  [106, 90, 205], // Slate Blue
-  [123, 104, 238], // Medium Slate Blue
-  [65, 105, 225], // Royal Blue
-  [0, 191, 255], // Deep Sky Blue
   [70, 130, 180], // Steel Blue
-  [176, 224, 230], // Powder Blue
-  [173, 216, 230], // Light Blue
+  [123, 104, 238], // Medium Slate Blue
+  [186, 85, 211], // Medium Orchid
+  [221, 160, 221], // Plum
+  [238, 130, 238], // Violet
 ];
 
 const colorsLenght = allColors.length;
@@ -50,29 +55,18 @@ function drawCircles(x, y, d, numberOfLines) {
     const sizeOfCurrentEllipse = (d / numberOfLines) * i;
     ellipse(x, y, sizeOfCurrentEllipse);
   }
-  stroke(currentSecondColor);
-  for (let i = 0; i < numberOfLines; i++) {
-    const sizeOfCurrentEllipse = (d / numberOfLines) * i;
-    ellipse(x - shift, y - shift, sizeOfCurrentEllipse);
-  }
 }
 
 function draw() {
   //combination of chatGPT (helped put together, made it work), what we did in class and my input
-  // let startX = (width - (cirleSize + gap) * numCols + gap) / 2;
-  // let startY = (height - (cirleSize + gap) * numRows + gap) / 2;
-
-  frameRate(150);
-  // rotate(frameCount * 0.01);
+  let startX = (width - (cirleSize + gap) * numCols + gap) / 2;
+  let startY = (height - (cirleSize + gap) * numRows + gap) / 2;
+  rotateY(frameCount * 0.01);
 
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
       //has to be here to be called everytime for a new ellipse!
       pickColor();
-      let startX = 300;
-      let startY = -300;
-      let startTwoX = 300;
-      let startTwoY = 500;
 
       let randomPushX = random(-10, 10);
       let randomPushY = random(-10, 10);
@@ -80,10 +74,8 @@ function draw() {
       let x = startX + col * (cirleSize + gap) + randomPushX;
       let y = startY + row * (cirleSize + gap) + randomPushY;
 
-      let twoX = startTwoX + col * (cirleSize + gap) + randomPushX;
-      let twoY = startTwoY + row * (cirleSize + gap) + randomPushY;
-
-      drawCircles(twoX, twoY, circleTwoSize, 3);
+      drawCircles(x, y, cirleSize, 12);
     }
   }
+  noLoop();
 }

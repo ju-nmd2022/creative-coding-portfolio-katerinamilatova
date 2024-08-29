@@ -18,5 +18,10 @@
     "file": "experiments/lines.js",
     "name": "Lines",
     "description": "Lines are based on Regrowth (2021) by Tyler Hobbs."
+  },
+  {
+    "file": "experiments/linesVar2.js",
+    "name": "B&W Floating",
+    "description": "This picture was created as an alternation to lines and uses 50 shades of grey. "
   }
 ]
