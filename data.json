@@ -34,24 +34,20 @@
     "name": "Blue Perlin Noise",
     "description": "The picture is a recreation of an artwork called Retrun Zero (0.8) Blue. "
   },
-  {
-    "file": "experiments/week2-final-version.js",
-    "name": "Blue Perlin Noise",
-    "description": "The picture is a recreation of an artwork called Retrun Zero (0.8) Blue. "
-  },
+
   {
     "file": "experiments/week2-recreation1.js",
     "name": "Aquamarine Sand",
-    "description": "Thic picture is a variation of an artwork called Retrun Zero (0.8) Blue. "
+    "description": "This picture is a variation of an artwork called Retrun Zero (0.8) Blue. "
   },
   {
     "file": "experiments/week2-recreation2.js",
     "name": "Electric",
-    "description": "Thic picture is a second variation of an artwork called Retrun Zero (0.8) Blue. "
+    "description": "This picture is a second variation of an artwork called Retrun Zero (0.8) Blue. "
   },
   {
     "file": "experiments/week2-recreation3.js",
     "name": "Roots",
-    "description": "Thic picture is a second variation of an artwork called Retrun Zero (0.8) Blue. "
+    "description": "This picture is a second variation of an artwork called Retrun Zero (0.8) Blue. "
   }
 ]
