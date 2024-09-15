@@ -49,5 +49,10 @@
     "file": "experiments/week2-recreation3.js",
     "name": "Roots",
     "description": "This picture is a second variation of an artwork called Retrun Zero (0.8) Blue. "
+  },
+  {
+    "file": "experiments/noise-recreation.js",
+    "name": "Colourful Noise",
+    "description": "An artwork using noise."
   }
 ]
