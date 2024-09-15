@@ -3,6 +3,7 @@
 function setup() {
   createCanvas(600, 600);
   frameRate(8);
+  background(10, 20, 30);
 }
 
 let gap = 40;
@@ -12,7 +13,7 @@ const devider = random(60, 200); //how flat/sharp the lines are
 let noiseOffsets = [];
 let mouseEffectRadius = 20;
 let speedOfFallingOfRect = 30;
-let circle = [];
+let rectangles = [];
 
 class Rect {
   constructor(x, y, width, height) {
@@ -37,15 +38,15 @@ class Rect {
 
 function drawFallingRectangles() {
   let newRect = new Rect(mouseX, 0, 0, 0);
-  circle.push(newRect);
+  rectangles.push(newRect);
   //ChatGPT helped a lot with editing this part
-  for (let i = circle.length - 1; i >= 0; i--) {
-    circle[i].fall();
-    circle[i].moveToMouse();
-    circle[i].draw();
+  for (let i = rectangles.length - 1; i >= 0; i--) {
+    rectangles[i].fall();
+    rectangles[i].moveToMouse();
+    rectangles[i].draw();
 
-    if (circle[i].y > height) {
-      circle.splice(i, 1);
+    if (rectangles[i].y > height) {
+      rectangles.splice(i, 1);
     }
   }
 }
@@ -86,44 +87,14 @@ function pickSecondColor() {
   currentSecondColor = allColors[randomIndex];
 }
 
-// makes every line different - ChatGPT helped
-for (let i = 0; i < numRows; i++) {
-  noiseOffsets.push(random(1000));
-}
-
 function draw() {
-  background(10, 20, 30);
   pickColor();
   stroke(currentColor);
   strokeWeight(3);
   // fill(currentColor);
   noFill();
 
-  //combination of code from the lessons and ChatGPT
   let startY = (height - (numRows - 1) * gap) / 2;
-
-  for (let row = 0; row < numRows; row++) {
-    let randomPushY = random(-20, 20);
-    let baseY = startY + row * gap;
-
-    beginShape();
-
-    let currentNoiseOffset = noiseOffsets[row] + frameCount * 0.01;
-
-    for (let x = 0; x < 600; x++) {
-      let noiseValue = noise(currentNoiseOffset + x / devider);
-      let y = baseY + noiseValue * 100 + randomPushY;
-
-      // checks where my mouse is
-      if (mouseX - mouseEffectRadius < x && x < mouseX + mouseEffectRadius) {
-        //creates the blank rectangle
-        y = 5000;
-      }
-
-      vertex(x, y);
-    }
-    endShape();
-  }
 
   noStroke();
   pickSecondColor();

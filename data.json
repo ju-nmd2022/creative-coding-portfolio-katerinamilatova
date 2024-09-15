@@ -54,5 +54,10 @@
     "file": "experiments/noise-recreation.js",
     "name": "Colourful Noise",
     "description": "An artwork using noise."
+  },
+  {
+    "file": "experiments/noise-recreation2.js",
+    "name": "Generate By Yourself",
+    "description": "An artwork where the user is the artist."
   }
 ]
