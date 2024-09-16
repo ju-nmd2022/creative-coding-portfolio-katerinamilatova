@@ -4,12 +4,13 @@ function setup() {
   createCanvas(600, 600);
   frameRate(8);
   background(10, 20, 30);
+  devider = random(60, 200);
 }
 
 let gap = 40;
 let numRows = 15;
 const originalY = 280;
-const devider = random(60, 200); //how flat/sharp the lines are
+let devider; //how flat/sharp the lines are
 let noiseOffsets = [];
 let mouseEffectRadius = 20;
 let speedOfFallingOfRect = 30;

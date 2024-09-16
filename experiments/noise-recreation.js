@@ -3,12 +3,14 @@
 function setup() {
   createCanvas(600, 600);
   frameRate(8);
+  devider = random(60, 200); //how flat/sharp the lines are - how to fix that the artwork is not showing
 }
 
 let gap = 40;
 let numRows = 15;
 const originalY = 280;
-const devider = random(60, 200); //how flat/sharp the lines are
+let devider;
+
 let noiseOffsets = [];
 let mouseEffectRadius = 20;
 let speedOfFallingOfRect = 30;
@@ -88,7 +90,7 @@ function pickSecondColor() {
 
 // makes every line different - ChatGPT helped
 for (let i = 0; i < numRows; i++) {
-  noiseOffsets.push(random(1000));
+  noiseOffsets.push(Math.random() * 1000);
 }
 
 function draw() {
