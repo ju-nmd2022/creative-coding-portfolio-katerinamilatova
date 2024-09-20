@@ -4,6 +4,12 @@ function setup() {
   background(10, 20, 30);
   devider = random(60, 200);
   synth = new Tone.Synth().toDestination();
+  chorus = new Tone.Chorus(10, 2.5, 5).toDestination();
+  distortion = new Tone.Distortion(0.3).toDestination();
+  reverb = new Tone.Reverb(2).toDestination();
+  synth.connect(chorus);
+  synth.connect(reverb);
+  synth.connect(distortion);
 }
 
 let gap = 40;
@@ -12,6 +18,9 @@ let devider;
 let speedOfFallingOfRect = 30;
 let rectangles = [];
 let synth;
+let chorus;
+let reverb;
+let distortion;
 
 class Rect {
   constructor(x, y, width, height) {
@@ -112,13 +121,13 @@ function draw() {
 
   if (colorIndex === 0) {
     synth.triggerAttackRelease("C4", "8n");
-  } else if (colorIndex === 1 || colorIndex === 5 || colorIndex === 9) {
+  } else if (colorIndex === 1 || colorIndex === 9 || colorIndex === 18) {
     synth.triggerAttackRelease("G4", "8n");
-  } else if (colorIndex === 2 || colorIndex === 6 || colorIndex === 11) {
+  } else if (colorIndex === 6 || colorIndex === 11) {
     synth.triggerAttackRelease("E4", "8n");
-  } else if (colorIndex === 3 || colorIndex === 7 || colorIndex === 13) {
+  } else if (colorIndex === 3 || colorIndex === 13) {
     synth.triggerAttackRelease("A4", "8n");
-  } else if (colorIndex === 4 || colorIndex === 8 || colorIndex === 16) {
+  } else if (colorIndex === 4 || colorIndex === 16) {
     synth.triggerAttackRelease("D4", "8n");
   }
 
