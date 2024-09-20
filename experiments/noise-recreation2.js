@@ -1,20 +1,17 @@
-//This code is a combination of the code from lecture about noise, my previous works and ChatGPT
-
 function setup() {
   createCanvas(600, 600);
   frameRate(8);
   background(10, 20, 30);
   devider = random(60, 200);
+  synth = new Tone.Synth().toDestination();
 }
 
 let gap = 40;
 let numRows = 15;
-const originalY = 280;
-let devider; //how flat/sharp the lines are
-let noiseOffsets = [];
-let mouseEffectRadius = 20;
+let devider;
 let speedOfFallingOfRect = 30;
 let rectangles = [];
+let synth;
 
 class Rect {
   constructor(x, y, width, height) {
@@ -40,7 +37,7 @@ class Rect {
 function drawFallingRectangles() {
   let newRect = new Rect(mouseX, 0, 0, 0);
   rectangles.push(newRect);
-  //ChatGPT helped a lot with editing this part
+
   for (let i = rectangles.length - 1; i >= 0; i--) {
     rectangles[i].fall();
     rectangles[i].moveToMouse();
@@ -75,9 +72,10 @@ let allColors = [
   [238, 130, 238],
 ];
 
-const colorsLenght = allColors.length;
+const colorsLength = allColors.length;
 let currentColor;
 let currentSecondColor;
+
 function pickColor() {
   const randomIndex = Math.floor(Math.random() * allColors.length);
   currentColor = allColors[randomIndex];
@@ -88,11 +86,17 @@ function pickSecondColor() {
   currentSecondColor = allColors[randomIndex];
 }
 
+// Ensure Tone.js starts audio when user interacts -- ChatGPT made this work
+function mousePressed() {
+  // Start the Tone.js audio context
+  Tone.start();
+}
+
 function draw() {
+  console.log("Draw called");
   pickColor();
   stroke(currentColor);
   strokeWeight(3);
-  // fill(currentColor);
   noFill();
 
   let startY = (height - (numRows - 1) * gap) / 2;
@@ -100,5 +104,25 @@ function draw() {
   noStroke();
   pickSecondColor();
   fill(currentSecondColor);
+
+  mousePressed();
+
+  //chatGPT helped with this line
+  let colorIndex = allColors.indexOf(currentColor);
+
+  if (colorIndex === 0) {
+    synth.triggerAttackRelease("C4", "8n");
+  } else if (colorIndex === 1 || colorIndex === 5 || colorIndex === 9) {
+    synth.triggerAttackRelease("G4", "8n");
+  } else if (colorIndex === 2 || colorIndex === 6 || colorIndex === 11) {
+    synth.triggerAttackRelease("E4", "8n");
+  } else if (colorIndex === 3 || colorIndex === 7 || colorIndex === 13) {
+    synth.triggerAttackRelease("A4", "8n");
+  } else if (colorIndex === 4 || colorIndex === 8 || colorIndex === 16) {
+    synth.triggerAttackRelease("D4", "8n");
+  }
+
   drawFallingRectangles();
 }
+
+//maxPolyphony
